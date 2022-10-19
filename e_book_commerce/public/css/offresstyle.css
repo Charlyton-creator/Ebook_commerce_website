@@ -1,0 +1,66 @@
+.geo-tags{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    margin-top: 25%;
+}
+.geo-tags .circle{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #0f5ea7;
+    cursor: pointer;
+}
+.featured .wrp .box.box-product{
+    width: 80%;
+}
+.geo-tags .circle.active.african{
+    box-shadow: 0 0 0 2px #fff,
+    0 0 0 4px #0f5ea7;
+}
+.geo-tags .circle.european{
+    background-color: #fa1697;
+}
+.geo-tags .circle.active.european{
+    box-shadow: 0 0 0 2px #fff,
+    0 0 0 4px #fa1697;
+}
+.name-price{
+    margin-top:20px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.name-price .name{
+    font-size: 23px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #333;
+}
+.name-price .e-price{
+    font-size: 23px;
+    font-weight: 600;
+    color: #474747;
+    background-color: #ececec;
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+.e-details{
+    margin: 10px 0;
+    width: 100%;
+}
+.e-details p{
+    font-size: 14px;
+    color: #646464;
+}
+.e-details .e-stars{
+    font-size: 22px;
+    color: gold;
+}
+.precheck{
+    align-items: center;
+    padding: 5rem 5rem 0 5rem;
+    font-size: 18px;
+}
