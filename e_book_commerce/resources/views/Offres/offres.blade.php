@@ -4,6 +4,7 @@
 <header class="header">
     @include('layouts.menu')
 </header>
+@include('layouts.ebboksbanner')
 <!-- Header section end -->
 <link rel="stylesheet" href="{{asset('css/offresstyle.css')}}">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -14,108 +15,43 @@
         <input type="search" name="" id="search-box" class="" placeholder="search Here ........">
         <label for="search-box"> <i class="fas fa-search"></i> </label>
     </form>
-</div>
-<h1 class="heading"><span>Nos-E-books</span></h1>
 <div class="precheck">
     <p>Les meilleurs E-Books culinaires du web. Trouver vous un E-Book et faite vous plaisir en vous laissant guider. Avec COOKFAST mangez bien et proprement</p>
 </div>
 <!-- Featured section start-->
     <section id="featured" class="featured">
+        <h1 class="heading"><span>Tous nos Ebooks</span></h1>
         <div class="featured-slider">
-            <div class="owl-carousel wrp">
-                <div class="box box-product">
-                    <div class="icons">
-                        <a href="http://" class="fas fa-thumbs-down"></a>
-                        <a href="http://" class="fas fa-heart"></a>
-                        <a href=""><i class='bx bxl-facebook'></i></a>
-                        <a href=""><i class='bx bxl-twitter'></i></a>
-                        <a href=""><i class='bx bxl-linkedin' ></i></a>
-                    </div>
-                    <div class="image">
-                        <img src="{{ asset('img/image-5.jpg') }}" alt="" srcset="">
-                    </div>
-                    <div class="geo-tags">
-                        AF<span class="circle african active" id="african"></span>
-                        EU<span class="circle european" id="european"></span>
-                    </div>
-                    <div class="name-price">
-                        <span class="name">Cuisine Gateaux</span>
-                        <span class="e-price">2500FCFA</span>  
-                    </div>
-                    <div class="e-details">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quia alias quis est veniam doloribus!</p>
-                        <div class="e-stars">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bx-star'></i>
+            <div class="wraper">
+                @foreach ($allebooks as $ebook)
+                    <div class="box">
+                        <div class="icons">
+                            <a href="http://" class="fas fa-thumbs-down"></a>
+                            <a href="http://" class="fas fa-heart"></a>
+                        </div>
+                        <div class="image">
+                            <img src="{{ asset('img/image-4-removebg-preview.png') }}" alt="" srcset="">
+                        </div>
+                        <div class="content">
+                            <h3>{{$ebook->libelle}}</h3>
+                            <div class="price">{{$ebook->is_current_price}}FCFA<span>{{$ebook->price}}FCFA</span></div>
+                            <div class="recettes_number"><span><strong>Recettes:   </strong>{{ $ebook->nombre_recettes }}</span></div>
+                            <div class="tags">
+                                <span class="af active">AF</span>
+                                <span class="eu">EU</span>
+                            </div>
+                            <div class="stars">
+                                <span>Note</span>
+                                <i class="bx bx-star"></i>
+                                <i class="bx bx-star"></i>
+                                <i class="bx bx-star"></i>
+                                <i class="bx bx-star"></i>
+                                <i class="bx bx-star"></i>
+                            </div>
+                            <a href="/addcart/{{$ebook->id}}" class="btn">Ajouter au Panier</a>
                         </div>
                     </div>
-                    <a href="{{ route('addtocart') }}" class="btn">Ajouter au Panier</a> 
-                </div>
-                <div class="box box-product">
-                    <div class="icons">
-                        <a href="http://" class="fas fa-thumbs-down"></a>
-                        <a href="http://" class="fas fa-heart"></a>
-                        <a href=""><i class='bx bxl-facebook'></i></a>
-                        <a href=""><i class='bx bxl-twitter'></i></a>
-                        <a href=""><i class='bx bxl-linkedin' ></i></a>
-                    </div>
-                    <div class="image">
-                        <img src="{{ asset('img/image-5.jpg') }}" alt="" srcset="">
-                    </div>
-                    <div class="geo-tags">
-                        AF<span class="circle african active" id="african"></span>
-                            EU<span class="circle european" id="european"></span>
-                    </div>
-                    <div class="name-price">
-                        <span class="name">Cuisine Gateaux</span>
-                        <span class="e-price">2500FCFA</span>  
-                    </div>
-                    <div class="e-details">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quia alias quis est veniam doloribus!</p>
-                        <div class="e-stars">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bx-star'></i>
-                        </div>
-                    </div>
-                    <a href="{{ route('addtocart') }}" class="btn">Ajouter au Panier</a> 
-                </div>
-                <div class="box box-product">
-                    <div class="icons">
-                        <a href="http://" class="fas fa-thumbs-down"></a>
-                        <a href="http://" class="fas fa-heart"></a>
-                        <a href=""><i class='bx bxl-facebook'></i></a>
-                        <a href=""><i class='bx bxl-twitter'></i></a>
-                        <a href=""><i class='bx bxl-linkedin' ></i></a>
-                    </div>
-                    <div class="image">
-                        <img src="{{ asset('img/image-5.jpg') }}" alt="" srcset="">
-                    </div>
-                    <div class="geo-tags">
-                        AF<span class="circle african active" id="african"></span>
-                            EU<span class="circle european" id="european"></span>
-                    </div>
-                    <div class="name-price">
-                        <span class="name">Cuisine Gateaux</span>
-                        <span class="e-price">2500FCFA</span>  
-                    </div>
-                    <div class="e-details">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quia alias quis est veniam doloribus!</p>
-                        <div class="e-stars">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bx-star'></i>
-                        </div>
-                    </div>
-                    <a href="{{ route('addtocart') }}" class="btn">Ajouter au Panier</a> 
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

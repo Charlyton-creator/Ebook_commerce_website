@@ -17,14 +17,12 @@ menuBar.addEventListener('click', function(){
 })
 if((window.innerWidth)<768){
     sidebar.classList.add('hide');
-    console.log(sidebar.classList);
-    console.log(window.innerWidth);
 }else if((window.innerWidth)<576){
     const searchButton = document.querySelector('#content nav form .form-input button');
     const searchForm = document.querySelector('#content nav form');
     
 
-    searchButton.addEventListener(click, function(){
+    searchButton.addEventListener('click', function(){
 
     });
 }

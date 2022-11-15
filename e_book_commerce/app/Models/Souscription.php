@@ -15,6 +15,6 @@ class Souscription extends Model
      */
     public function payement()
     {
-        return $this->belongsTo(Payement::class);
+        return $this->hasOne(Payement::class);
     }
 }

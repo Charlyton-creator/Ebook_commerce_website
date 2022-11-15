@@ -7,6 +7,5 @@
                 <a href="http://" class="btn">Acheter un E-Book</a>
             </div>
         </div>
-        
     </section>
     <!-- Home section Ending -->

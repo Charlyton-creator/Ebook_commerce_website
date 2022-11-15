@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\User;
+use App\Models\Payement;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -28,7 +30,12 @@ class AuthController extends Controller
        */
       public function dashboardindex()
       {
-         return view('dashboard.dashboardcontent');
+         //$number_cart_elements = Ebook_User::where('user_id', auth()->user->id)->count();
+         $number_users = User::count();
+         $number_abonnees = User::where('has_abonnement', 1)->count();
+         $allpayements = Payement::all();
+
+         return view('dashboard.dashboardcontent', compact("allpayements","number_users","number_abonnees"));
       }
 
    /**
@@ -50,8 +57,12 @@ class AuthController extends Controller
             ]);
             $user = new User();
             $user->email = $request->email;
-            $user->name = $request->name;
-            $user->password = bcrypt($request->password);
+            $user->nom = $request->name;
+            $user->password = $request->password;
+            $user->sexe = $request->sexe;
+            $user->tel_number = $request->tel_number;
+            $user->profil = $request->profil;
+            $user->activity_domain = $request->activity_domain;
             $user->save();
             return response()->json($user);
          } catch (\Exception $th) {
@@ -73,12 +84,13 @@ class AuthController extends Controller
         }
          $user = User::where('email', $request->email)->first();
 
-            if(!$user || !Hash::check($request->password,$user->password))
+            if(!$user || !($request->password == $user->password))
             {
                return redirect()->back()->with('msg','OOppes! You have entered invalid credentials');
             }
             else
             {
+               Auth::login($user);
                $request->session()->put('user', $user);
                return redirect(route('mydashboard'))->withSuccess('You have Successfully logged in');
             }
@@ -93,6 +105,7 @@ class AuthController extends Controller
          try {
             //code...
             if($request->session()->has('user')){
+               Auth::logout();
                $request->session()->forget('user');
                $request->session()->flush();
                return redirect(route('home'))->withSuccess('You have Successfully logged out');;

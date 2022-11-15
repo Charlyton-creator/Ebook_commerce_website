@@ -35,7 +35,7 @@
         <a href="http://" class="fab fa-linkedin"></a>
         <a href="http://" class="fab fa-whatsapp"></a>
     </div>
-    <div class="credits">Creer par <span>Charles Web Backend developper</span> | tous droits reservés!</div>
+    <div class="credits">Creer par <span>Charles Web & Mobile developper</span> | tous droits reservés</div>
 </section>
 {{-- <div class="loader-container">
     <img src="{{ asset('img/4887-book.gif')}}" alt="" srcset="">

@@ -10,11 +10,10 @@
                     <a href="{{ route('authaction') }}" >S'authentifier</a>
                 @else
                     <a href="{{ route('logout') }}">Se deconnecter</a>
-                    {{-- <a href="{{ route('my') }}">Se deconnecter</a> --}}
+                    <a href="{{ route('cartlist') }}">Mon Panier <i class="fas fa-shopping-cart"></i></a> 
                 @endif
             </nav>
             <div class="icons">
                 <div id="search-btn" class="fas fa-search"></div>
-                <a href="{{ route('mycart') }}" class="fas fa-shopping-cart"><span>0</span></a>
             </div>
         </div>

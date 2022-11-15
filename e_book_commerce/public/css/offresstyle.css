@@ -1,3 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@keyframes box_shadow{
+    from{
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    }
+    to{
+        box-shadow: 0 10px 20px #0f5ea7;
+    }
+}
+
+@keyframes box_shadow2 {
+    from{
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    }
+    to{
+        box-shadow: 0 10px 20px #f6ca64;
+    }
+}
+
+.container{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 1em;
+}
+.tags{
+    display: flex;
+    gap: 1.5rem;
+}
+.tags .af{
+    border-radius: 2em;
+    color: #fff;
+    border: 1px solid;
+    background: #f6ca64;
+    padding: .2em;
+}
+.tags .af.active{
+    animation: box_shadow2 1s infinite alternate;
+}
+.tags .eu.active{
+    animation: box_shadow 1s infinite alternate;
+}
+.tags .eu{
+    border-radius: 2em;
+    color: #fff;
+    border: 1px solid;
+    background: #0f5ea7;
+    padding: .2em;
+}
+.cart-icon, .cart-button a, .like-button{
+    padding: .5em .8em;
+}
+.cart-icon i, .like-button i, .share-button i{
+    font-size: 2em;
+}
+.stars i{
+    color: rgba(255, 238, 0);
+    font-size: .8em;
+}
+.stars span, .description p{
+    font-size: .85em;
+    color: rgb(36, 36, 36);
+}
+.name, .price{
+    font-size: 1.3em;
+    color: #000;
+}
+.description {
+    margin: .6em 0;
+}
+/*Responsive  */
+
+@media screen and (min-width:500px) {
+    .card{
+        width: 350px;
+        margin: 0 auto;
+    }
+}
+
 .geo-tags{
     display: flex;
     justify-content: center;
@@ -11,9 +94,6 @@
     border-radius: 50%;
     background-color: #0f5ea7;
     cursor: pointer;
-}
-.featured .wrp .box.box-product{
-    width: 80%;
 }
 .geo-tags .circle.active.african{
     box-shadow: 0 0 0 2px #fff,

@@ -44,17 +44,40 @@
             </a>
         </div>
         <ul class="box-info">
+            @if (session('user') && auth()->user()->has_abonnement == 1)
             <li>
                 <i class="bx bxs-calendar-check"></i>
                 <span class="text">
-                    <h3>1020</h3>
-                    <p>Nouveaux achats</p>
+                    <h3>{{$number_users}}</h3>
+                    <p>Publicités</p>
                 </span>
             </li>
             <li>
                 <i class="bx bxs-calendar-check"></i>
                 <span class="text">
+                    <h3>{{$number_abonnees}}</h3>
+                    <p>Vues</p>
+                </span>
+            </li>
+            <li>
+                <i class="bx bxs-dollars-circle"></i>
+                <span class="text">
                     <h3>1020</h3>
+                    <p>Likes</p>
+                </span>
+            </li>
+            @else
+            <li>
+                <i class="bx bxs-calendar-check"></i>
+                <span class="text">
+                    <h3>{{$number_users}}</h3>
+                    <p>Utilisateurs</p>
+                </span>
+            </li>
+            <li>
+                <i class="bx bxs-calendar-check"></i>
+                <span class="text">
+                    <h3>{{$number_abonnees}}</h3>
                     <p>Abonnés</p>
                 </span>
             </li>
@@ -65,6 +88,7 @@
                     <p>Total Achats</p>
                 </span>
             </li>
+            @endif
         </ul>
         <div class="table-data">
             <div class="order">
@@ -78,66 +102,20 @@
                         <tr>
                             <th>Utilisateur</th>
                             <th>Date d'achat</th>
-                            <th>Statut de l'achat</th>
+                            <th>Statut du payement</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <img src="{{ asset('img/undraw_profile.svg') }}" alt="" srcset="" >
-                                <p>Barry Allen</p>
-                            </td>
-                            <td>04-05-2022</td>
-                            <td><span class="status completed">Terminer</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="{{ asset('img/undraw_profile.svg') }}" alt="" srcset="" >
-                                <p>Barry Allen</p>
-                            </td>
-                            <td>04-05-2022</td>
-                            <td><span class="status completed">Terminer</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="{{ asset('img/undraw_profile.svg') }}" alt="" srcset="" >
-                                <p>Barry Allen</p>
-                            </td>
-                            <td>04-05-2022</td>
-                            <td><span class="status process">En Payement</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="{{ asset('img/undraw_profile.svg') }}" alt="" srcset="" >
-                                <p>Barry Allen</p>
-                            </td>
-                            <td>04-05-2022</td>
-                            <td><span class="status pending">Non payé</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="{{ asset('img/undraw_profile.svg') }}" alt="" srcset="" >
-                                <p>Barry Allen</p>
-                            </td>
-                            <td>04-05-2022</td>
-                            <td><span class="status pending">Non payé</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="{{ asset('img/undraw_profile.svg') }}" alt="" srcset="" >
-                                <p>Barry Allen</p>
-                            </td>
-                            <td>04-05-2022</td>
-                            <td><span class="status process">En Proccesing</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="{{ asset('img/undraw_profile.svg') }}" alt="" srcset="">
-                                <p>Barry Allen</p>
-                            </td>
-                            <td>04-05-2022</td>
-                            <td><span class="status completed">Terminer</span></td>
-                        </tr>
+                        @foreach ($allpayements as $payementinfos)
+                            <tr>
+                                <td>
+                                    <img src="{{ asset('img/undraw_profile.svg') }}" alt="" srcset="">
+                                    <p>Barry Allen</p>
+                                </td>
+                                <td>{{ $payementinfos->date_payement }}</td>
+                                <td><span class="status {{ $payementinfos->payement_status }}">{{ $payementinfos->payement_status }}</span></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

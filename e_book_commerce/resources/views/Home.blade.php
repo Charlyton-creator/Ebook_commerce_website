@@ -105,10 +105,11 @@
     <!-- Featured section End-->
      <!-- Newsletter Section starting-->
      <section class="newsletter">
-        <form action="" method="post">
+        <form id="souscrire">
+            @csrf
             <h3>Souscrivez a notre news pour etre a informer constamment sur les nouveautés</h3>
-            <input type="email" name="" id="" placeholder="Votre email ici" class="box">
-            <input type="submit" value="suscribe" class="btn">
+            <input type="email" name="email" id="email" placeholder="Votre email ici" class="box">
+            <button type="submit" value="suscribe" class="btn">Souscrire</button>
         </form>
      </section>
       <!--Newsletter Section Ending -->
@@ -228,7 +229,7 @@
             <h3>Offre Spéciale du jour</h3>
             <h1>Ayez jusqu' 50% de réduction sur l'achat d'un E-Book Pro</h1>
             <p>Offrez vous aujourd'hui la chance d'avoir un E-Book Pro et cuisiner facilement et simplement chez vous a la maison sans l'assistance d'une tierce personne!!!!. Vite L'offre prends fin dans 24H</p>
-            <a href="http://" class="btn">Acheter Maintenant!</a>
+            <a href="{{ route('ebooks') }}" class="btn">Acheter Maintenant!</a>
         </div>
         <div class="image">
             <img src="{{asset('img/image-6-removebg-preview.png')}}" alt="">
@@ -305,5 +306,68 @@
         </div>
 
       </section>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+const formSouscription = document.querySelector("#souscrire");
+formSouscription.addEventListener('submit',function(e) {
+    e.preventDefault();
+    let email = $("#email").val();
+    let _token = $("input[name=_token]").val();
+    console.log(email,_token)
+
+    $.ajax({
+        url: "{{route('newssuscribe')}}",
+        type: "POST",
+        data: {
+            email: email,
+            _token: _token
+        },
+        beforeSend: function(){
+            let TimeInterval;
+            Swal.fire({
+                title: 'Traitement de votre requete en cours ...',
+                html: 'Chargement dans <b></b> milliseconds.',
+                timer: 10000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    TimeInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(TimeInterval)
+                }
+            }).then((result) => {
+                    /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        },
+        success: function(response) {
+            if (response) {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Envoyé avec succès',
+                  text: "Vos informations ont été prises en compte. Thanks you",
+                  showConfirmButton: true,
+                })
+                $('#souscrire')[0].reset();
+                $('#souscrire')[0].hide();
+            }
+        },
+        error: function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Quelque Chose s est mal passé svp veuillez reverifier votre formulaire',
+            })
+        }
+    });
+});
+</script>
       <!-- Reviews section ending-->
 @endsection

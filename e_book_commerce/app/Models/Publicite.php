@@ -14,6 +14,6 @@ class Publicite extends Model
      */
     public function users()
     {
-        return $this->blongsToMany(User::class);
+        return $this->belongsToMany(User::class);
     }
 }

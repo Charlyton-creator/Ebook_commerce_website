@@ -3,8 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Categorie;
+use App\Models\Recette;
 class CategorieController extends Controller
 {
     //
+    /**
+     * get all the recettes of the categorie
+     */
+    public function getallrecettesofcategorie($catid)
+    {
+        if(Categorie::where('id', $catid)->exists()){
+            $recettes = Categorie::where('id', $catid)->first()->recettes;
+        }else{
+            return redirecet(route('404'));
+        }
+       
+    }
+    //
+    public function getallcategories()
+    {
+        $allcategories = Categorie::all();
+        return view('dashboard.admin.categories.allcategories', compact('allcategories'));
+    }
+    /**
+     * strore a new catégorie
+     */
+    public function store(Request $request){
+        //
+    }
+    /**
+     * update a catégorie
+     */
+    public function update(Request $request,$idcat)
+    {
+        //
+    }
+    /**
+     * delelet a catégorie
+     */
+    public function delete()
+    {
+        //
+    }
 }

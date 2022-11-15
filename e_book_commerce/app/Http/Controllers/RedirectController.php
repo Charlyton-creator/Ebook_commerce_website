@@ -32,7 +32,7 @@ class RedirectController extends Controller
       /**
        * 
        */
-      public function internaservererror()
+      public function internalervererror()
       {
          return view('redirections.500');
       }

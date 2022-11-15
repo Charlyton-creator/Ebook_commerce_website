@@ -21,12 +21,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nom',
         'email',
         'password',
-        /* 'prenom',
+        'prenom',
         'sexe',
-        'tel', */
+        'tel_number', 
+        'sexe',
+        'has_abonnement',
+        'abonnement_id',
+        'has_dashboard',
+        'profile',
+        'activity_domain',
     ];
 
     /**
@@ -55,11 +61,11 @@ class User extends Authenticatable
         return $this->belongsTo(Abonnemment::class);
     }
     /**
-     * Recuperer tous les E-Books de l'utilisateur
+     * Recuperer le panier de l'utilisateur
      */
-    public function e_books()
+    public function cart()
     {
-        return $this->belongsToMany(Ebook::class);
+        return $this->hasOne(Cart::class);
     }
     /**
      * Recupere tous les publications de l'utilisateur

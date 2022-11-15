@@ -31,10 +31,11 @@
                         <i class='bx bx-check-circle F'></i>
                     </button>
                 </div>
-                <form action="" class="form-cart active">
+                <form class="form-cart active">
+                    @csrf
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Souscription pack name</label>
-                        <input type="text" class="input-default" id="cardholder-name" name="cardholder-name" value="{{ $packname }}" >
+                        <input type="text" class="input-default" id="pack_name" name="pack_name" value="{{ $packname }}" >
                     </div>
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Nom proprietaire de la carte</label>
@@ -55,43 +56,59 @@
                         </div>
                         <div class="cvv">
                             <label for="cvv" class="label-default">CVV</label>
-                            <input type="number" class="input-default" id="cvv" name="card-number">
+                            <input type="number" class="input-default" id="cvv" name="cvv">
                         </div>
                     </div>
+                    <div class="cardholder-name">
+                        <label for="cardholder-name" class="label-default">Votre Adresse</label>
+                        <input type="text" class="input-default" id="user_adress" name="user_adress">
+                    </div>
+                    <button type="submit" class="p-btn btn-primary" id="payAmount">Payer<span>2000FCFA</span></button>
                 </form> 
-                <form action="" class="form-tmoney">
+                <form class="form-tmoney">
+                    @csrf
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Souscription pack name</label>
-                        <input type="text" class="input-default" id="cardholder-name" name="cardholder-name" value="{{ $packname }}" >
+                        <input type="text" class="input-default" id="pack_name" name="pack_name" value="{{ $packname }}" >
                     </div>
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Nom proprietaire</label>
-                        <input type="text" class="input-default" id="cardholder-name" name="cardholder-name">
+                        <input type="text" class="input-default" id="nom_proprietaire" name="nom_proprietaire">
                     </div>
                     <div class="card-number">
                         <label for="card-number" class="label-default">Numero de Transaction Tmoney</label>
-                        <input type="number" class="input-default" id="card-number" name="card-number">
+                        <input type="number" class="input-default" id="numero_transac_tmoney" name="numero_transac_tmoney">
                     </div>
+                    <div class="cardholder-name">
+                        <label for="cardholder-name" class="label-default">Votre Adresse</label>
+                        <input type="text" class="input-default" id="user_adress" name="user_adress">
+                    </div>
+                    <button type="submit" class="p-btn btn-primary" id="payAmount">Payer<span>2000FCFA</span></button>
                 </form> 
-                <form action="" class="form-flooz">
+                <form class="form-flooz">
+                    @csrf
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Souscription pack name</label>
-                        <input type="text" class="input-default" id="cardholder-name" name="cardholder-name" value="{{ $packname }}" >
+                        <input type="text" class="input-default" id="pack_name" name="pack_name" value="{{ $packname }}" >
                     </div>
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Nom proprietaire</label>
-                        <input type="text" class="input-default" id="cardholder-name" name="cardholder-name">
+                        <input type="text" class="input-default" id="nom_proprietaire" name="nom_proprietaire">
                     </div>
                     <div class="card-number">
                         <label for="card-number" class="label-default">Numero de transaction Flooz</label>
-                        <input type="number" class="input-default" id="card-number" name="card-number">
+                        <input type="number" class="input-default" id="numero_transac_flooz" name="numero_transac_flooz">
                     </div>
+                    <div class="cardholder-name">
+                        <label for="cardholder-name" class="label-default">Votre Adresse</label>
+                        <input type="text" class="input-default" id="user_adress" name="user_adress">
+                    </div>
+                    <button type="submit" class="p-btn btn-primary" id="payAmount">Payer<span>2000FCFA</span></button>
                 </form> 
             </div>
-            <button class="p-btn btn-primary">
-                <b>Payer</b><span id="payAmount">20000</span>FCFA
-            </button>
         </div>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
             let payementform = document.querySelector('.form-cart');
             let tmoneypaymentform = document.querySelector('.form-tmoney');
@@ -143,5 +160,207 @@
                 Carte_credit.classList.add('selected'); 
                 cartecheck.classList.add('checked'); 
             }
-        </script>
-        @endsection
+    if(Carte_credit.classList.contains('selected')){
+        payementform.addEventListener('submit',function(e) {
+        e.preventDefault();
+        let cardholder_ame = $("#cardholder-name").val();
+        let pack_name = $("#pack_name").val();
+        let card_number = $("#card-number").val();
+        let expire_date = $("#expire-date").val();
+        let user_adress = $("#user_adress").val();
+        let total = $('#payAmount').val();
+        let _token = $("input[name=_token]").val();
+        console.log(cardholder_ame, card_number, pack_name, expire_date, user_adress, total, _token)
+
+        $.ajax({
+            url: "{{route('souscriptionpayement')}}",
+            type: "POST",
+            data: {
+                payement_method : 'Carte de credit',
+                cardholder_ame: cardholder_ame,
+                pack_name: pack_name,
+                card_number: card_number,
+                expire_date: expire_date,
+                user_adress: user_adress,
+                total : total,
+                _token: _token
+            },
+            beforeSend: function(){
+                let TimeInterval;
+                Swal.fire({
+                    title: 'Traitement de votre payement en cours ...',
+                    html: 'Chargement dans <b></b> milliseconds.',
+                    timer: 10000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        TimeInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(TimeInterval)
+                    }
+                }).then((result) => {
+                        /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                })
+            },
+            success: function(response) {
+                if (response) {
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Payement Effectué avec Succès',
+                    text: "Votre Payement a été enregistrer avec succès. Votre Abonnement sera activé dans les prochaines heures",
+                    showConfirmButton: true,
+                    })
+                    $('#payementform')[0].reset();
+                    $('#payementform')[0].hide();
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Quelque Chose s est mal passé svp veuillez reverifier votre formulaire',
+                })
+            }
+        });
+    });
+    }
+    tmoneypaymentform.addEventListener('submit',function(e) {
+        e.preventDefault();
+        let pack_name = $("#pack_name").val();
+        let nom_proprietaire = $("#nom_proprietaire").val();
+        let numero_transac_tmoney = $("#numero_transac_tmoney").val();
+        let user_adress = $('#user_adress').val();
+        let _token = $("input[name=_token]").val();
+        let total = $('#payAmount').val();
+        console.log(pack_name, nom_proprietaire, numero_transac_tmoney, user_adress, total, _token)
+
+        $.ajax({
+            url: "{{route('souscriptionpayement')}}",
+            type: "POST",
+            data: {
+                payement_method : 'Tmoney',
+                pack_name: pack_name,
+                nom_proprietaire: nom_proprietaire,
+                numero_transac_tmoney: numero_transac_tmoney,
+                total: total,
+                _token: _token
+            },
+            beforeSend: function(){
+                let TimeInterval;
+                Swal.fire({
+                    title: 'Traitement de votre payement en cours ...',
+                    html: 'Chargement dans <b></b> milliseconds.',
+                    timer: 10000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        TimeInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(TimeInterval)
+                    }
+                }).then((result) => {
+                        /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                })
+            },
+            success: function(response) {
+                if (response) {
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Payement Effectué avec Succès',
+                    text: "Votre Payement a été enregistrer avec succès. Votre Abonnement sera activé dans les prochaines heures",
+                    showConfirmButton: true,
+                    })
+                    $('#tmoneypaymentform')[0].reset();
+                    $('#tmoneypaymentform')[0].hide();
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Quelque Chose s est mal passé svp veuillez reverifier votre formulaire',
+                })
+            }
+        });
+    });
+    floozpayementform.addEventListener('submit',function(e) {
+        e.preventDefault();
+        let pack_name = $("#pack_name").val();
+        let nom_proprietaire = $("#nom_proprietaire").val();
+        let numero_transac_flooz = $("#numero_transac_tmoney").val();
+        let _token = $("input[name=_token]").val();
+        let total = $('#payAmount').val();
+        console.log(pack_name, nom_proprietaire, numero_transac_flooz, user_adress,total, _token)
+
+        $.ajax({
+            url: "{{route('souscriptionpayement')}}",
+            type: "POST",
+            data: {
+                payement_method : 'Flooz/MoovMoney',
+                pack_name: pack_name,
+                nom_proprietaire: nom_proprietaire,
+                numero_transac_flooz: numero_transac_flooz,
+                total: total,
+                _token: _token
+            },
+            beforeSend: function(){
+                let TimeInterval;
+                Swal.fire({
+                    title: 'Traitement de votre payement en cours ...',
+                    html: 'Chargement dans <b></b> milliseconds.',
+                    timer: 10000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        TimeInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(TimeInterval)
+                    }
+                }).then((result) => {
+                        /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I was closed by the timer')
+                    }
+                })
+            },
+            success: function(response) {
+                if (response) {
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Payement Effectué avec Succès',
+                    text: "Votre Payement a été enregistrer avec succès. Votre Abonnement sera activé dans les prochaines heures",
+                    showConfirmButton: true,
+                    })
+                    $('#floozpayementform')[0].reset();
+                    $('#floozpayementform')[0].hide();
+                }
+            },
+            error: function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Quelque Chose s est mal passé svp veuillez reverifier votre formulaire',
+                })
+            }
+        });
+    });
+</script>
+ @endsection

@@ -18,6 +18,8 @@ return new class extends Migration
         Schema::create('abonnements',function (Blueprint $table){
             $table->id();
             $table->string('libelle');
+            $table->double('is_current_price');
+            $table->double('price');
             $table->timestamps();
         });
         //users
@@ -39,16 +41,14 @@ return new class extends Migration
             $table->string('activity_domain');
             $table->timestamps();
         });
-        //newsletter
-        Schema::create('newsletter',function (Blueprint $table){
-            $table->id();
-            $table->string('user_mail');
-            $table->timestamps();
-        });
         //features table
         Schema::create('features',function (Blueprint $table){
             $table->id();
             $table->string('libelle');
+            $table->foreignId('abonement_id')
+            ->references('id')
+            ->on('abonnements')
+            ->Ondelete('cascade');
             $table->timestamps();
         });
         //publicités table
@@ -71,30 +71,11 @@ return new class extends Migration
             $table->id();
             $table->string('libelle');
             $table->string('description');
-            $table->string('e_book');
+            $table->string('ebook_document');
+            $table->string('flip_book_link');
+            $table->double('is_current_price');
+            $table->double('price');
             $table->integer('nombre_recettes');
-            $table->timestamps();
-        });
-         //price table
-         Schema::create('prices',function (Blueprint $table){
-            $table->id();
-            $table->float('value');
-            $table->timestamps();
-        });
-        //price table
-        Schema::create('e_book_prices',function (Blueprint $table){
-            $table->id();
-            $table->foreignId('e_book_id')->references('id')->on('e_books')->Ondelete('cascade');
-            $table->foreignId('e_book_price')->references('id')->on('prices')->Ondelete('cascade');
-            $table->boolean('is_current_price');
-            $table->timestamps();
-        });
-        //price table
-        Schema::create('abonements_prices',function (Blueprint $table){
-            $table->id();
-            $table->foreignId('abonnement_id')->references('id')->on('abonnements')->Ondelete('cascade');
-            $table->foreignId('e_book_price')->references('id')->on('prices')->Ondelete('cascade');
-            $table->boolean('is_current_price');
             $table->timestamps();
         });
         //categorie
@@ -104,7 +85,7 @@ return new class extends Migration
             $table->timestamps();
         });
         //recette 
-        Schema::create('recette',function (Blueprint $table){
+        Schema::create('recettes',function (Blueprint $table){
             $table->id();
             $table->string('recette_name');
             $table->foreignId('recette_categorie')
@@ -125,7 +106,7 @@ return new class extends Migration
             $table->timestamps();
         });
         //recette_geo_tag
-        Schema::create('recette_geo_tag',function (Blueprint $table){
+        Schema::create('recette_geo_tags',function (Blueprint $table){
             $table->id();
             $table->foreignId('recette_id')
             ->references('id')
@@ -133,7 +114,7 @@ return new class extends Migration
             ->Ondelete('cascade');
             $table->foreignId('geo_tag_id')
             ->references('id')
-            ->on('geo_tag')
+            ->on('geo_tags')
             ->onDelete('cascade');
             $table->timestamps();
         });
@@ -169,11 +150,23 @@ return new class extends Migration
             ->references('id')
             ->on('users')
             ->Ondelete('cascade');
-            $table->foreignId('e_book_id')
+            $table->timestamps();
+        });
+        //ebook_user
+        Schema::create('e_books_users',function (Blueprint $table){
+            $table->id();
+            $table->foreignId('user_id')
+            ->references('id')
+            ->on('users')
+            ->Ondelete('cascade');
+            $table->foreignId('ebook_id')
             ->references('id')
             ->on('e_books')
             ->Ondelete('cascade');
-            $table->float('price');
+            $table->foreignId('cart_id')
+            ->references('id')
+            ->on('carts')
+            ->Ondelete('cascade');
             $table->timestamps();
         });
         //souscriptios
@@ -191,7 +184,7 @@ return new class extends Migration
             $table->timestamps();
         });
         //payement
-        Schema::create('payement',function (Blueprint $table){
+        Schema::create('payements',function (Blueprint $table){
             $table->id();
             $table->foreignId('cart_id')
             ->references('id')
@@ -206,21 +199,8 @@ return new class extends Migration
             $table->string('adresse');
             $table->timestamps();
         });
-        //abonnements_features
-        Schema::create('abonnement_features',function (Blueprint $table){
-            $table->id();
-            $table->foreignId('abonnement_id')
-            ->references('id')
-            ->on('abonnements')
-            ->Ondelete('cascade');
-            $table->foreignId('feature_id')
-            ->references('id')
-            ->on('features')
-            ->Ondelete('cascade');
-            $table->timestamps();
-        });
         //entreprise_pubs
-        Schema::create('user_pub',function (Blueprint $table){
+        Schema::create('user_pubs',function (Blueprint $table){
             $table->id();
             $table->foreignId('user_id')
             ->references('id')
@@ -245,6 +225,29 @@ return new class extends Migration
             ->Ondelete('cascade');
             $table->timestamps();
         });
+        //commandes
+        Schema::create('commandes',function (Blueprint $table){
+            $table->id();
+            $table->foreignId('cart_id')
+            ->references('id')
+            ->on('carts')
+            ->Ondelete('cascade');
+            $table->foreignId('user_id')
+            ->references('id')
+            ->on('users')
+            ->Ondelete('cascade');
+            $table->double('total');
+            $table->timestamps();
+        });
+        //commandes
+        Schema::create('newsletters',function (Blueprint $table){
+            $table->id();
+            $table->string('email')->unique();
+            $table->string('month_souscription');
+            $table->string('year_souscription');
+            $table->timestamps();
+        });
+        
     }
 
     /**

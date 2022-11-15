@@ -163,3 +163,47 @@ section .card .profile-image img{
      color: #7d2ae8;
      transform: scale(1.1);
 }
+.content .pub-form{
+    display: none;
+}
+.content .pub-form.active{
+    display: contents;
+}
+.content .pub-form form{
+    margin-top: 3rem;
+    width: 100%;
+    height: auto;
+    background: #fff;
+    border: 1px snow;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+.content .pub-form form .text-field{
+    width: 100%;
+    padding:1rem;
+}
+.content .pub-form form .title-field{
+    width: 100%;
+    padding:1rem;
+}
+.content .pub-form form .image-filed{
+    width: 100%;
+    padding:1rem;
+}
+.content .pub-form form .title-field input{
+    margin-top: 1rem;
+    height: 4rem;
+    width: 100%;
+    border:.1rem solid  hsl(0, 0%, 64%);
+}
+.content .pub-form form .image-filed input{
+    margin-top: 1rem;
+    height: 4rem;
+    width: 100%;
+}
+.content .pub-form form .text-field textarea{
+    margin-top: 1rem;
+    height: 4rem;
+    width: 100%;
+    border: .1rem solid  hsl(0, 0%, 64%);;
+};

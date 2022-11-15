@@ -9,4 +9,5 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class RecetteGeoTag extends Pivot
 {
     use HasFactory;
+    protected $table = "recettes_geo_tags";
 }

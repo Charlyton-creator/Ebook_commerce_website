@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use CodePack;
-use Ebook;
 class Promotion extends Model
 {
     use HasFactory;
@@ -22,6 +20,6 @@ class Promotion extends Model
      */
     public function e_books()
     {
-        return $this->hasMany(Ebook::class);
+        return $this->belongsTo(Ebook::class);
     }
 }

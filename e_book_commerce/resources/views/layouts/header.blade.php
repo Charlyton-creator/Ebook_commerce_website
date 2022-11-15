@@ -1,4 +1,4 @@
-    <!-- Bottom navbar -->
+<!-- Bottom navbar -->
     <nav class="bottom-navbar">
         <a href="#Home" class="fas fa-home"></a>
         <a href="#featured" class="fas fa-list"></a>
@@ -7,4 +7,4 @@
         <a href="#contact" class="fas fa-contact"></a>
         <a href="#about" class="fas fa-about"></a>
     </nav>
-    <!-- End Bottom navbar -->
+<!-- End Bottom navbar -->

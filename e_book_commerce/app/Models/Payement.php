@@ -4,9 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cart;
-use Souscription;
-
 class Payement extends Model
 {
     use HasFactory;
@@ -14,15 +11,16 @@ class Payement extends Model
     /**
      * Get the cart associated with the payement.
      */
-    public function cart()
+    public function commande()
     {
-        return $this->hasOne(Cart::class);
+        return $this->belongsTo(Commande::class);
     }
     /**
      * Get the souscription associated with the payement.
      */
-    public function payement()
+    public function souscription()
     {
-        return $this->hasOne(Souscription::class);
+        return $this->belongsTo(Souscription::class);
     }
+    protected $fillable = [];
 }

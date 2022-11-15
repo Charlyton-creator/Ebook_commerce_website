@@ -105,6 +105,10 @@
     color: #ffd861;
     border: 2px solid #ffd861;
 }
+.standard .price-area,
+.standard .inner-arear{
+    background: #ee7a05;
+}
 .basic .purchase-btn button:hover{
     color: #fff;
     background: #ffd861;
@@ -112,6 +116,10 @@
 .ultimate .purchase-btn button:hover{
     color: #fff;
     background: #27ae60;
+}
+.standard .purchase-btn button:hover{
+    color: #fff;
+    background: #ee7a05;
 }
 .premium .price-area,
 .premium .inner-area,
@@ -129,6 +137,11 @@
     color: #27ae60;
     border: 2px solid #27ae60;
 }
+.standard .purchase-btn button{
+    background: #fff;
+    color: #ee7a05;
+    border: 2px solid #ee7a05;
+}
 .basic .package-name{
     background: #ffd861;
 }
@@ -136,8 +149,11 @@
 .premium .package-name{
     background: #5995fd;
 }
+.standard .package-name{
+    background: #ee7a05;
+}
 .ultimate .package-name{
-    background: #27ae60;
+    background: #28b060;
 }
 .basic .package-name::before{
     content: "Basic";
@@ -148,7 +164,10 @@
 .ultimate .package-name::before{
     content: "Ultimate";
 }
-.table .ribbon{
+.standard .package-name::before{
+    content: "Standard";
+}
+.table.premium .premium.ribbon{
     height: 150px;
     width: 150px;
     position: absolute;
@@ -156,8 +175,8 @@
     left: -10px;
     overflow: hidden;
 }
-.table .ribbon::before,
-.table .ribbon::after{
+.table.premium .premium.ribbon::before,
+.table.premium .premium.ribbon::after{
     position: absolute;
     content: "";
     display: block;
@@ -166,15 +185,15 @@
     border-top-color: transparent;
     border-left-color: transparent;
 }
-.table .ribbon::before{
+.table.premium .premium.ribbon::before{
     top: 15px;
     right: 0px;
 }
-.table .ribbon::after{
+.table.premium .premium.ribbon::after{
     bottom: 0px;
     left: 15px;
 }
-.table .ribbon span{
+.table.premium .premium.ribbon span{
     position: absolute;
     background: #a262fa;
     width: 200px;

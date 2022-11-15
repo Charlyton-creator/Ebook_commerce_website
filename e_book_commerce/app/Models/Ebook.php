@@ -23,16 +23,9 @@ class Ebook extends Model
     /**
      * Promotion auquel appartient l'Ebook.
      */
-    public function promotion()
+    public function promotions()
     {
-        return $this->belongsTo(Promotion::class);
-    }
-    /**
-     *Get all the prices own by the E_book
-     */
-    public function prices()
-    {
-        return $this->belongsToMany(Price::class)->using(EbPrice::class);
+        return $this->hasMany(Promotion::class);
     }
     /**
      * Recuperer tous les temoignages de l'ebook

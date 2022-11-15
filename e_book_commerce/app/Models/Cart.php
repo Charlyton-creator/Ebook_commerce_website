@@ -11,10 +11,17 @@ class Cart extends Model
     use HasFactory;
     protected $table = 'carts';
     /**
-     * Get the payement associated with the cart.
+     * get all the ebook_users instance owns the cart
      */
-    public function payement()
+    public function ebookusers()
     {
-        return $this->belongsTo(Payement::class);
+        return $this->hasMany(EBook_user::class);
+    }
+    /**
+     * get the user owns the cart
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

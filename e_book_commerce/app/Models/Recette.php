@@ -30,6 +30,6 @@ class Recette extends Model
      */
     public function geo_tags()
     {
-        return $this->belongsToMany(GeoTag::class);
+        return $this->belongsToMany(GeoTag::class)->using(RecetteGeoTag::class);
     }
 }
