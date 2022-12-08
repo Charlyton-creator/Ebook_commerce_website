@@ -78,6 +78,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <a href="/addpromotion/index" class="btn">Ajouter une promotion</a>
             </div>
         </div>
     </main>

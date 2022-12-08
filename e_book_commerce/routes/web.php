@@ -48,6 +48,8 @@ Route::controller(AuthController::class)->group(function(){
 Route::controller(AbonnementController::class)->group(function($packname){
     Route::get('/abonnements','index')->name('abonnements');
     Route::get('/abonements/all', 'getallabonnements');
+    Route::get('/addabonnement/index', 'addview');
+    Route::post('abonnement/strore', 'store')->name('addabonnement');
     Route::get('/souscription/pack/{packname}','souscriptionpage')->name('souscriptionpage');
     Route::post('/souscription/pay','pay')->name('souscriptionpayement');
     Route::post('/souscription/store','store');
@@ -84,7 +86,8 @@ Route::controller(RedirectController::class)->group(function(){
 //---------------------------------------------------------------------------
 Route::controller(CategorieController::class)->group(function(){
     Route::get('/categorie/recette/all', 'getallrecettesofcategorie');
-    Route::post('/categorie/create', 'store');
+    Route::get('/addcategorie/index', 'addview');
+    Route::post('/categorie/create', 'store')->name('addcategorie');
     Route::post('/categorie/update', 'update');
     Route::post('/categorie/delete', 'delete');
     Route::get('/categories', 'getallcategories');
@@ -100,7 +103,8 @@ Route::controller(RecetteController::class)->group(function(){
 //---------------------------------------------------------------------------
 Route::controller(FeaturesController::class)->group(function(){
     Route::get('/feature/all', 'getfeatures');
-    Route::post('/feature/create', 'store');
+    Route::get('/addfeature/index', 'addview');
+    Route::post('/feature/create', 'store')->name('addfeature');
     Route::post('/feature/update', 'update');
     Route::post('/feature/delete', 'delete');
 });
@@ -108,6 +112,7 @@ Route::controller(FeaturesController::class)->group(function(){
 Route::controller(PromotionController::class)->group(function(){
     Route::get('/applycode/{discount_token?}', 'applycodepack');
     Route::get('/promotions/all', 'getallpromotion');
+    Route::get('/addpromotion/index', 'addview');
     Route::post('promotion/create', 'store');
     Route::post('promotion/update', 'update');
     Route::post('promotion/delete', 'delete');
@@ -128,9 +133,10 @@ Route::controller(PublicationController::class)->group(function(){
 //---------------------------------------------------------------------------
 Route::controller(CodePackController::class)->group(function(){
     Route::get('/code/all','getall')->name('allcodes');
-    Route::post('/code/create', 'store');
+    Route::get('/addcodepack/index', 'addview');
+    Route::post('/code/create', 'store')->name('codegenerate');
     Route::post('/code/update', 'update');
-    Route::post('/code/delete', 'delete');
+    Route::post('/code/delete/{id}', 'delete');
 });
 //---------------------------------------------------------------------------
 Route::controller(GeoTagController::class)->group(function(){

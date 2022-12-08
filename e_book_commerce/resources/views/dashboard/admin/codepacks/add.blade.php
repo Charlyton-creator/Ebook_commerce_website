@@ -27,14 +27,14 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Abonnements</h1>
+                <h1>Code Packs</h1>
                 <ul class="breadcrumb">
                     <li>
                         <a href="">Dashboard</a>
                     </li>
                     <li><i class="bx bx-chevron-right"></i></li>
                     <li>
-                        <a class="active" href="">Abonnements</a>
+                        <a class="active" href="">Codes Packs</a>
                     </li>
                 </ul>
             </div>
@@ -69,25 +69,22 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Ajouter un Abonnement sur COOKFAST</h3>
+                    <h3>Ajouter un Code promo</h3>
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
                 <table>
-                    <form action="{{ route('addabonnement') }}" method="post">
+                    <form action="{{ route('codegenerate') }}" method="post">
                         @csrf
                         <div class="container">
                             <div class="form-box">
-                                <label for="libelle">Libelle de l'abonnement</label>
-                                <input type="text" name="libelle" class="field" placeholder="">
-                                <label for="prix_basic">Prix de base de l'abonnement</label>
-                                <input type="number" name="prix_basic" class="field" placeholder="">
-                                <label for="prix_actuel">Prix Actuel de l'abonnement</label>
-                                <input type="number" name="prix_current" class="field" placeholder="">
-                                <button class="btn" type="submit">Sauvegarder</button>
+                                <p style="margin-bottom: 10px;">Le code sera générer automatiquement suivant la longeur que vous avez définie et seras stocker.</p>
+                                <label for="longeur">Préciser la longeur pour le code.</label>
+                                <input type="number" name="longueur" class="field" placeholder="">
+                                <button class="btn" type="submit">Generer & Sauvegarder</button>
                             </div>
                         </div>
-                    </form>                  
+                    </form>
                 </table>
             </div>
         </div>

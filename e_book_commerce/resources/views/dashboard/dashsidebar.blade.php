@@ -89,7 +89,7 @@
             </a>
         </li>
         <li>
-            <a href="http://">
+            <a href="/addfeature/index">
                 <i class='bx bxs-message' ></i>
                 <span class="text">Abonenements Features</span>
             </a>

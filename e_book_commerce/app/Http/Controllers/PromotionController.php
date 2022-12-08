@@ -72,4 +72,11 @@ class PromotionController extends Controller
     {
         //
     }
+    /**
+     * view for adding the new promotion
+     */
+    public function addview()
+    {
+        return view('dashboard.admin.promotions.addpromotion');
+    }
 }

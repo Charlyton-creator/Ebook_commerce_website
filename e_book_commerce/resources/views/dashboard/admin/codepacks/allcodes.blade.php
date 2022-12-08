@@ -43,6 +43,29 @@
                 <span class="text">Télécharger PDF</span>
             </a>
         </div>
+        @if (session('success'))
+            <div class="alert show">
+                <span class="fas fa-success"></span>
+                <span class="msg">
+                    {{session('success')}}
+                </span>
+                <span class="close-btn">
+                    <span class="fas fa-times"></span>
+                </span>
+            </div>
+        @else
+            @if (session('error'))
+                <div class="alert show">
+                    <span class="fas fa-times"></span>
+                    <span class="msg">
+                        {{session('error')}}
+                    </span>
+                    <span class="close-btn">
+                        <span class="fas fa-times"></span>
+                    </span>
+                </div>
+            @endif
+        @endif
         <div class="table-data">
             <div class="order">
                 <div class="head">
@@ -64,12 +87,21 @@
                                    {{--  <img src="{{ asset('img/undraw_profile.svg') }}" alt="" srcset=""> --}}
                                     <p>{{$codepack->code}}</p>
                                 </td>
-                                <td><span class="status completed"><a href="/codepack/edit/{{ $codepack->id }}" style="color: white;">EDIT</a></span></td>
-                                <td><span class="status pending"><a href="/codepack/delete/{{ $codepack->id }}" style="color: white;">DELETE</a></span></td>
+                                <td>
+                                    <span class="status completed"><a href="/codepack/edit/{{ $codepack->id }}" style="color: white;">EDIT</a></span></td>
+                                <td>
+                                    <form action="/code/delete/{{ $codepack->id }}" method="post">
+                                        @csrf
+                                        <span class="status pending">
+                                            <button type="submit" style="color: white; border:none; outline:none;background:none;">delete</button>
+                                        </span>
+                                    </form>    
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <a href="/addcodepack/index" class="btn">Ajouter un code promo</a>
             </div>
         </div>
     </main>

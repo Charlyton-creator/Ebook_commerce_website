@@ -72,6 +72,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <a href="/addabonnement/index" class="btn">Ajouter un abonnement</a>    <a href="/addfeature/index" class="btn">Ajouter un avantage</a>
             </div>
         </div>
     </main>

@@ -70,6 +70,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <a href="/addcategorie/index" class="btn">Ajouter une catégorie de recette</a>
             </div>
         </div>
     </main>
