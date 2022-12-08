@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Payement;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
 class AuthController extends Controller
 {
@@ -44,31 +45,29 @@ class AuthController extends Controller
 
      public function register(Request $request)
      {
-         try {
-            //code...
-            if($request->email != ''){
-               $request->validate([
-                  'email' => 'required|unique:users',
-               ]);
-            }
+         if($request->email != null){
             $request->validate([
-               'password' => 'required|string|min:8',
-               'name' => 'required|string|min:3|max:50',
+               'email' => 'required|unique:users',
             ]);
-            $user = new User();
-            $user->email = $request->email;
-            $user->nom = $request->name;
-            $user->password = $request->password;
-            $user->sexe = $request->sexe;
-            $user->tel_number = $request->tel_number;
-            $user->profil = $request->profil;
-            $user->activity_domain = $request->activity_domain;
-            $user->save();
-            return response()->json($user);
-         } catch (\Exception $th) {
-            //throw $th;
-            return json($th);
          }
+         $request->validate([
+            'password' => 'required|string|min:8',
+            'name' => 'required|string|max:50',
+         ]);
+         $user = new User();
+         $user->email = $request->email;
+         $user->nom = $request->name;
+         $user->prenom = $request->prenom;
+         $user->password = bcrypt($request->password);
+         $user->sexe = $request->sexe;
+         $user->tel_number = $request->tel;
+         $user->profile = $request->profil;
+         $user->activity_domain = $request->activity_domain;
+         $user->save();
+         $cart = new Cart;
+         $cart->user_id = $user->id;
+         $cart->save();
+         return response()->json($user);
      }
      /**
       * log the user
@@ -84,7 +83,7 @@ class AuthController extends Controller
         }
          $user = User::where('email', $request->email)->first();
 
-            if(!$user || !($request->password == $user->password))
+            if(!$user || !(Hash::check($request->password, $user->password)))
             {
                return redirect()->back()->with('msg','OOppes! You have entered invalid credentials');
             }

@@ -37,18 +37,12 @@ class AbonnementController extends Controller
     /**
      * souscrire a un abonnement
      */
-    public function pay(Request $request)
+    public function pay(Request $request, $packname)
     {
         //
-        try {
-            //code...
-            return response()->json($newpayement);
-        } catch (\Exception $th) {
-            //throw $th;
-            return response()->json([
-                'message' => $th->getMessage()
-            ]);
-        }
+        $validator = Validator::make($request->all(), [
+            'payement_method' => 'required|string'
+        ]);
     }
     /**
      * return the souscription page view

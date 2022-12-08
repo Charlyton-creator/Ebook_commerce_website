@@ -525,12 +525,20 @@ body{
 .alert.hide{
     display: none;
 }
-.alert .fa-exclamation-circle{
+.alert .fa-check{
     position: absolute;
     top: 50%;
     left: 20px;
     transform: translateY(-50%);
     color: #27ae60;
+    font-size: 30px;
+}
+.alert .fa-times.error{
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color:orangered;
     font-size: 30px;
 }
 .alert .msg{
@@ -551,7 +559,7 @@ body{
     cursor: pointer;
 }
 .close-btn .fa-times{
-    color: #219150;
+    color: #cbffe1;
     font-size: 22px;
     line-height: 40px;
 }

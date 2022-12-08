@@ -45,7 +45,7 @@
         </div>
         @if (session('success'))
             <div class="alert show">
-                <span class="fas fa-success"></span>
+                <span class="fa fa-check"></span>
                 <span class="msg">
                     {{session('success')}}
                 </span>
@@ -56,7 +56,7 @@
         @else
             @if (session('error'))
                 <div class="alert show">
-                    <span class="fas fa-times"></span>
+                    <span class="fas fa-times error "></span>
                     <span class="msg">
                         {{session('error')}}
                     </span>

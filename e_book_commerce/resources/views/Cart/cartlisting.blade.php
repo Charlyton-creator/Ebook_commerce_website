@@ -83,7 +83,12 @@
                     </form> 
                 </div>
             @else
-                <p>Veuillez vaider votre panier pour proceder au payement.</p>
+                <div class="alert show">
+                    <span class="fa fas fa-times"></span>
+                    <span class="msg">
+                        Veuillez d'abord valider votre panier pour procéder au payement!
+                    </span>
+                </div>
             @endif
         </section>
         <section class="cart">

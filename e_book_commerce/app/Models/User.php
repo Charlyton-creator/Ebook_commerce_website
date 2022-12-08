@@ -7,10 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Abonnemment;
-use Ebook;
-use Publicite;
-use Temoignage;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -27,10 +23,6 @@ class User extends Authenticatable
         'prenom',
         'sexe',
         'tel_number', 
-        'sexe',
-        'has_abonnement',
-        'abonnement_id',
-        'has_dashboard',
         'profile',
         'activity_domain',
     ];

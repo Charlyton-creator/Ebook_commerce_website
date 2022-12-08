@@ -26,7 +26,7 @@ class NewsController extends Controller
             $newnews->month_souscription = date('M');
             $newnews->year_souscription = date('Y');
             $newnews->save();
-            Mail::to($request->email)->send(new NewsSouscriptionMail($message));
+            //Mail::to($request->email)->send(new NewsSouscriptionMail($message));
             return response()->json($newnews);
         } catch (\Exception $th) {
             //throw $th;

@@ -51,7 +51,7 @@ Route::controller(AbonnementController::class)->group(function($packname){
     Route::get('/addabonnement/index', 'addview');
     Route::post('abonnement/strore', 'store')->name('addabonnement');
     Route::get('/souscription/pack/{packname}','souscriptionpage')->name('souscriptionpage');
-    Route::post('/souscription/pay','pay')->name('souscriptionpayement');
+    Route::post('/souscription/{packname}/pay','pay')->name('souscriptionpayement');
     Route::post('/souscription/store','store');
     Route::post('/souscription/update','update');
     Route::post('/souscription/delete','delete');
