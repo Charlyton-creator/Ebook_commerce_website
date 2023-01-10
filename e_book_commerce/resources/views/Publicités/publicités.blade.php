@@ -188,37 +188,7 @@
         <h3>Publications</h3>
         <h1>Augmenter votre visibilité en publiant des offres, des publicités, des articles et attirés les internautes!</h1>
         <p>Nous nous occupons de tout. Renseigner juste la pub, notre plateforme se charge de la difuser pour vous. Ayez ainsi la chance de toucher un grnd nombre d'utilisateurs en des secondes!!</p>
-        <a href="{{ route('abonnements')}}" class="btn">Trouver un Abonnement</a>    <button class="make-pub" onclick="DisplayPubform()">Faire une publication</button>
-        <div class="pub-form">
-            <form action="" method="post">
-                <div class="title-field">
-                    <label for="title-field">Titre</label>
-                    <input type="text" name="" id="" name="title">
-                </div>
-                <div class="text-field">
-                    <label for="text-field">Contenu</label>
-                    <textarea name="" id="" cols="30" rows="10" name="text"></textarea>
-                </div>
-                <div class="image-filed">
-                    <label for="image-field">Image Descriptive</label>
-                    <input type="file" src="" alt="" name="img_desc">
-                </div>
-                <button class="button-publication">Publier</button>
-                <style>
-                   .button-publication,.make-pub{
-                        margin-top: 1rem;
-                        display: inline-block;
-                        padding: .9rem 3rem;
-                        border-radius: .5rem;
-                        color: #fff;
-                        background: var(--green);
-                        font-size: 1.7rem;
-                        cursor: pointer;
-                        font-weight: 500;
-                    }
-                </style>
-            </form>
-        </div>
+        <a href="{{ route('abonnements')}}" class="btn">Trouver un Abonnement</a>
     </div>
     <div class="image">
         <img src="{{asset('img/undraw_services_re_hu5n.svg')}}" alt="">
@@ -255,10 +225,5 @@
         }
     }
 })
-function DisplayPubform()
-{
-    let pubForm = document.querySelector('.pub-form');
-    pubForm.classList.add('active');
-}
 </script>
 @endsection

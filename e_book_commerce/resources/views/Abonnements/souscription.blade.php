@@ -31,7 +31,7 @@
                         <i class='bx bx-check-circle F'></i>
                     </button>
                 </div>
-                <form class="form-cart active" action="{{ route('souscriptionpayement') }}" method="POST">
+                <form class="form-cart active" action="{{ route('souscriptionpayement', ['packname' => {{$packname}}, 'payementmethod' => 'Carte' ]) }}" method="POST">
                     @csrf
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Souscription pack name</label>
@@ -39,11 +39,11 @@
                     </div>
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Nom proprietaire de la carte</label>
-                        <input type="text" class="input-default" id="cardholder-name" name="cardholder-name">
+                        <input type="text" class="input-default" id="cardholder-name" name="cardholder_name">
                     </div>
                     <div class="card-number">
                         <label for="card-number" class="label-default">Numero de carte</label>
-                        <input type="number" class="input-default" id="card-number" name="card-number">
+                        <input type="number" class="input-default" id="card-number" name="card_number">
                     </div>
                     <div class="input-flex">
                         <div class="expire-date">
@@ -65,7 +65,7 @@
                     </div>
                     <button type="submit" class="p-btn btn-primary" id="payAmount">Payer<span>2000FCFA</span></button>
                 </form> 
-                <form class="form-tmoney" action="{{ route('souscriptionpayement') }}" method="POST">
+                <form class="form-tmoney" action="{{ route('souscriptionpayement', ['packname' => {{$packname}}, 'payementmethod' => 'Tmoney' ]) }}" method="POST">
                     @csrf
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Souscription pack name</label>
@@ -83,9 +83,9 @@
                         <label for="cardholder-name" class="label-default">Votre Adresse</label>
                         <input type="text" class="input-default" id="user_adress" name="user_adress">
                     </div>
-                    <button type="submit" class="p-btn btn-primary" id="payAmount">Payer<span>2000FCFA</span></button>
+                    <button type="submit" class="p-btn btn-primary" id="payAmount" value="">Payer<span>2000FCFA</span></button>
                 </form> 
-                <form class="form-flooz" action="{{ route('souscriptionpayement') }}" method="POST">
+                <form class="form-flooz" action="{{ route('souscriptionpayement', ['packname' => {{$packname}}, 'payementmethod' => 'Flooz' ]) }}" method="POST">
                     @csrf
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Souscription pack name</label>
